@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=400, initial-scale=1.0">
+  <title>Meta AI Image Generator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">🎨</span>
+        <span class="logo-text">Meta AI Generator</span>
+      </div>
+      <span class="badge badge-new">New</span>
+    </header>
+
+    <!-- Mode Selection -->
+    <section class="section">
+      <label class="section-label">Mode</label>
+      <div class="toggle-group">
+        <button class="toggle-btn active" data-mode="image">
+          <span class="icon">🖼️</span> Image
+        </button>
+        <button class="toggle-btn" data-mode="video">
+          <span class="icon">🎬</span> Video
+        </button>
+      </div>
+    </section>
+
+    <!-- Aspect Ratio -->
+    <section class="section">
+      <label class="section-label">Aspect Ratio</label>
+      <div class="toggle-group ratio-group">
+        <button class="toggle-btn ratio-btn" data-ratio="1:1">1:1</button>
+        <button class="toggle-btn ratio-btn active" data-ratio="9:16">9:16</button>
+        <button class="toggle-btn ratio-btn" data-ratio="16:9">16:9</button>
+      </div>
+    </section>
+
+    <!-- Reference Image -->
+    <section class="section">
+      <label class="section-label">Reference Image (Optional)</label>
+      <div class="file-input-group">
+        <input type="text" id="refImagePath" class="input-field" placeholder="No file selected" readonly>
+        <input type="file" id="refImageFile" accept="image/*" hidden>
+        <button class="btn btn-secondary" id="browseRefImage">
+          <span class="icon">📁</span> Browse
+        </button>
+        <button class="btn btn-icon" id="clearRefImage" title="Clear">✕</button>
+      </div>
+      <div id="refImagePreview" class="image-preview hidden"></div>
+    </section>
+
+    <!-- Auto Download -->
+    <section class="section">
+      <label class="checkbox-label">
+        <input type="checkbox" id="autoDownload" checked>
+        <span class="checkmark"></span>
+        <span>Auto-download generated images</span>
+      </label>
+      <p class="tip">💡 Tip: If downloads aren't working, allow "Automatic downloads" for meta.ai in Chrome Settings →
+        Site Settings</p>
+    </section>
+
+    <!-- Input Mode -->
+    <section class="section">
+      <label class="section-label">Input Mode</label>
+      <div class="toggle-group">
+        <button class="toggle-btn active" data-input="manual">
+          <span class="icon">✍️</span> Manual
+        </button>
+        <button class="toggle-btn" data-input="auto">
+          <span class="icon">🤖</span> Auto
+        </button>
+      </div>
+    </section>
+
+    <!-- Prompts Input -->
+    <section class="section">
+      <label class="section-label">
+        Enter Prompts
+        <span class="hint">(separate by blank line)</span>
+      </label>
+      <textarea id="promptsInput" class="textarea" placeholder="First prompt here...
+
+Second prompt here...
+
+Third prompt here..."></textarea>
+      <div class="file-upload-row">
+        <input type="file" id="promptsFile" accept=".txt" hidden>
+        <button class="btn btn-secondary btn-sm" id="loadPromptsFile">
+          <span class="icon">📄</span> Load from file
+        </button>
+        <span id="promptCount" class="prompt-count">0 prompts</span>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="section action-buttons">
+      <button class="btn btn-primary" id="sendBtn">
+        <span class="icon">🚀</span> Send
+      </button>
+      <button class="btn btn-secondary" id="clearBtn">
+        <span class="icon">🗑️</span> Clear
+      </button>
+    </section>
+
+    <!-- Queue Panel -->
+    <section class="section queue-section">
+      <div class="queue-header">
+        <label class="section-label">Queue</label>
+        <span id="queueCount" class="badge">0 prompts</span>
+      </div>
+      <div id="queueList" class="queue-list">
+        <div class="queue-empty">No prompts in queue</div>
+      </div>
+    </section>
+
+    <!-- Status Bar -->
+    <footer class="status-bar">
+      <span id="statusText" class="status-text">Ready</span>
+      <span id="connectionStatus" class="connection-status disconnected">●</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>

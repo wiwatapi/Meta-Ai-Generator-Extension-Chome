@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=400, initial-scale=1.0">
+    <title>Meta AI Image Generator</title>
+    <link rel="stylesheet" href="sidepanel.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🎨</span>
+                <span class="logo-text">Meta AI Generator</span>
+            </div>
+            <span class="badge badge-new">v1.1</span>
+        </header>
+
+        <!-- Connection Status -->
+        <div id="connectionBanner" class="connection-banner disconnected">
+            <span class="status-dot"></span>
+            <span id="connectionText">ยังไม่ได้เชื่อมต่อกับ Meta AI</span>
+        </div>
+
+        <!-- Mode Selection -->
+        <section class="section">
+            <label class="section-label">Mode</label>
+            <div class="toggle-group">
+                <button class="toggle-btn active" data-mode="image">
+                    <span class="icon">🖼️</span> Image
+                </button>
+                <button class="toggle-btn" data-mode="video">
+                    <span class="icon">🎬</span> Video
+                </button>
+            </div>
+        </section>
+
+        <!-- Aspect Ratio (Image mode only) -->
+        <section class="section" id="aspectRatioSection">
+            <label class="section-label">Aspect Ratio</label>
+            <div class="toggle-group ratio-group">
+                <button class="toggle-btn ratio-btn" data-ratio="1:1">1:1</button>
+                <button class="toggle-btn ratio-btn active" data-ratio="9:16">9:16</button>
+                <button class="toggle-btn ratio-btn" data-ratio="16:9">16:9</button>
+            </div>
+        </section>
+
+        <!-- Reference Image -->
+        <section class="section">
+            <label class="section-label">Reference Image (Optional)</label>
+            <div class="file-input-group">
+                <input type="text" id="refImagePath" class="input-field" placeholder="No file selected" readonly>
+                <input type="file" id="refImageFile" accept="image/*" hidden>
+                <button class="btn btn-secondary" id="browseRefImage">
+                    <span class="icon">📁</span> Browse
+                </button>
+                <button class="btn btn-icon" id="clearRefImage" title="Clear">✕</button>
+            </div>
+            <div id="refImagePreview" class="image-preview hidden"></div>
+        </section>
+
+        <!-- Auto Download -->
+        <section class="section">
+            <label class="checkbox-label">
+                <input type="checkbox" id="autoDownload" checked>
+                <span class="checkmark"></span>
+                <span>Auto-download generated media</span>
+            </label>
+        </section>
+
+        <!-- Delay Setting -->
+        <section class="section">
+            <label class="section-label">Delay between prompts (seconds)</label>
+            <input type="number" id="delaySeconds" class="input-field" value="3" min="1" max="60">
+        </section>
+
+        <!-- Prompts Input -->
+        <section class="section">
+            <label class="section-label">
+                Enter Prompts
+                <span class="hint">(separate by blank line)</span>
+            </label>
+            <textarea id="promptsInput" class="textarea" placeholder="First prompt here...
+
+Second prompt here...
+
+Third prompt here..."></textarea>
+            <div class="file-upload-row">
+                <input type="file" id="promptsFile" accept=".txt" hidden>
+                <button class="btn btn-secondary btn-sm" id="loadPromptsFile">
+                    <span class="icon">📄</span> Load from file
+                </button>
+                <span id="promptCount" class="prompt-count">0 prompts</span>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="section action-buttons">
+            <button class="btn btn-primary" id="sendBtn">
+                <span class="icon">🚀</span> Start Generate
+            </button>
+            <button class="btn btn-danger" id="stopBtn" disabled>
+                <span class="icon">⏹️</span> Stop
+            </button>
+        </section>
+
+        <!-- Queue Panel -->
+        <section class="section queue-section">
+            <div class="queue-header">
+                <label class="section-label">Queue</label>
+                <span id="queueCount" class="badge">0 prompts</span>
+                <button class="btn btn-icon btn-sm" id="clearQueueBtn" title="Clear Queue">🗑️</button>
+            </div>
+            <div id="queueList" class="queue-list">
+                <div class="queue-empty">No prompts in queue</div>
+            </div>
+        </section>
+
+        <!-- Log Panel -->
+        <section class="section log-section">
+            <div class="queue-header">
+                <label class="section-label">Log</label>
+                <button class="btn btn-icon btn-sm" id="clearLogBtn" title="Clear Log">🗑️</button>
+            </div>
+            <div id="logList" class="log-list">
+                <div class="log-empty">No activity yet</div>
+            </div>
+        </section>
+    </div>
+
+    <script src="sidepanel.js"></script>
+</body>
+
+</html>
