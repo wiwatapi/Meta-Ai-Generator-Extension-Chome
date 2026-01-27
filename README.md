@@ -2,8 +2,8 @@
 
 **Meta AI Image Generator** เป็นเครื่องมือช่วยอำนวยความสะดวกในการสร้างสรรค์ผลงานรูปภาพและวิดีโอผ่าน Meta AI อย่างรวดเร็วและมีประสิทธิภาพ มาพร้อมกับระบบจัดการคิวคำสั่ง (Queue) และฟีเจอร์ปรับแต่งที่ครบครัน
 
-![Meta AI Image Generator Screenshot](Meta AI Image Generator.png)
-*(กรุณาเปลี่ยนชื่อไฟล์รูปภาพตามไฟล์จริงในโปรเจกต์ของคุณ)*
+![Meta AI Image Generator Screenshot](Meta%20AI%20Image%20Generator.png)
+
 
 ## ✨ คุณสมบัติเด่น (Features)
 
